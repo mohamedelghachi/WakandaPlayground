@@ -94,7 +94,8 @@ guidedModel =// @startlock
 			},// @lock
 			createSampleData:function(numberOfPeople)
 			{// @lock
-				generateData(numberOfPeople);
+				WP.generateCompanies();
+				WP.generatePeople(numberOfPeople);
 				return true;
 			}// @startlock
 		}
