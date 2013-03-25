@@ -3,6 +3,25 @@ guidedModel =// @startlock
 {
 	Person :
 	{
+		genderText :
+		{
+			onSet:function(value)
+			{// @endlock
+				if(value == "Male"){
+					this.gender = 1;
+				} else {
+					this.gender = 0;
+				}
+			},// @startlock
+			onGet:function()
+			{// @endlock
+				if(this.gender == 1){
+					return "Male";
+				} else {
+					return "Female";
+				}
+			}// @startlock
+		},
 		entityMethods :
 		{// @endlock
 			getChildren:function()
