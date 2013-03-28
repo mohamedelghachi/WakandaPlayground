@@ -8,7 +8,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	var generateDataButton = {};	// @button
 	var documentEvent = {};	// @document
 // @endregion// @endlock
-
+var prevSearchValue = null;
 // eventHandlers// @lock
 
 	searchGrid.onRowClick = function searchGrid_onRowClick (event)// @startlock
@@ -18,7 +18,15 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	searchInput.keyup = function searchInput_keyup (event)// @startlock
 	{// @endlock
-		sources.companySearch.query('name = :1', $$('searchInput').getValue() + '*');
+		var searchValue = $$('searchInput').getValue() + '*';
+		if(searchValue != prevSearchValue){
+			prevSearchValue = searchValue;
+			sources.companySearch.query('name = :1', searchValue,{
+				onSuccess: function(event){
+					//Query completed
+				}
+			});
+		}
 	};// @lock
 
 	clearDataButton.click = function clearDataButton_click (event)// @startlock
